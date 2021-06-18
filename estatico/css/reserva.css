@@ -1,0 +1,80 @@
+@media (max-width:575px) {
+    .display-4 {
+        font-size: 1.5rem;
+    }
+    .day h5 {
+        background-color: #f8f9fa;
+        padding: 3px 5px 5px;
+        margin: -8px -8px 8px -8px;
+    }
+    .date {
+        padding-left: 4px;
+    }
+}
+
+@media (min-width: 576px) {
+    .day {
+        height: 14.2857vw;
+    }
+}
+.filtros{
+  
+    width: 45%;
+    margin-left: 25%;
+    margin-top: 5%;
+    margin-right: 5%;
+}
+.agenda{
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 5%;
+}
+.btn_planes{
+    color: #fff !important;
+    background-color: #33658a !important;
+    border-color: #007bffa4 !important;
+    margin-left: 5%;
+}
+.formulario{
+    background-color: rgba(160, 189, 241, 0.685) !important;
+    padding: 40px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    box-shadow: inset 0 2px 5px rgba(240, 171, 24, 0.425);/*sombra interna*/
+}
+.form_label{
+    width: 35%;
+}
+.form_select{
+    width: 35%;
+}
+.agenda_libre{
+    background-color: rgb(211 223 244 / 69%) !important;
+}
+.agenda_bloqued{
+    background-color: rgb(185, 185, 185) !important;
+}
+.agenda_dia{
+    height: 92px;
+}
+.hora_disp{
+    background-color: #2db22d !important;
+}
+.hora_ocupada{
+    background-color: #b22d2d !important;
+}
+.agenda_titulo{
+    font-size: 2rem;
+}
+.accion{
+    width: 70%;
+    margin-left: 15%;
+    text-align: right;
+}
+.accion_form{
+    background-color: rgba(160, 189, 241, 0.685) !important;
+    padding: 18px;
+    margin-top: 1%;
+    margin-bottom: 2%;
+    box-shadow: inset 0 2px 5px rgb(240 171 24 / 43%);
+}

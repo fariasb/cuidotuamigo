@@ -1,0 +1,47 @@
+.box2{
+    height: 400px;
+    width: 64%;
+    margin-top: 5px;
+    margin-left: 0px;
+    float: left;
+    border-radius: 10px;
+    background-image: url(../images/perrofondo.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+.contenido{
+    /*border: 1px solid rgb(111, 71, 255);*/
+    background-color: rgba(245, 245, 227, 0.5);
+    margin: 0;
+    padding: 0;
+    width:91%;
+    height: 350px;
+    text-align: center;
+    padding-top: 5px;
+    margin-top: 15px;
+    margin-left: 30px;
+    border-radius: 5px;
+}
+.titulo_contenido{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color:sandybrown;
+    font-style: italic;
+   
+}
+.parrafo_principal{
+    text-align: justify;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.parrafo3{
+    width: 500px;
+    height: 90px;
+    color: rgb(56, 101, 138);
+    font-weight: bold;
+    font-style: italic;
+    margin-left: 130px;
+    
+    
+}

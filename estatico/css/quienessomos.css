@@ -1,0 +1,36 @@
+.box_contenido{
+    height: 450px;
+    width: 64%;
+    margin-top: 5px;
+    margin-left: 0px;
+    float: left;
+    border-radius: 10px;
+    background-image: url(../images/perrofondo.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+.contenido_cuadro{
+    /*border: 1px solid rgb(111, 71, 255);*/
+    background-color: rgba(160, 189, 241, 0.88);
+    margin: 0;
+    padding: 0;
+    width:91%;
+    height: 412px;
+    text-align: center;
+    padding-top: 5px;
+    margin-top: 15px;
+    margin-left: 30px;
+    border-radius: 5px;
+}
+.titulo_quienesomos{
+    color: #2e5e83;
+    padding-top: 15px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-style: italic;
+}
+.parrafoprincipal{
+    text-align: justify;
+    margin-left: 10px;
+    margin-right: 10px;
+}

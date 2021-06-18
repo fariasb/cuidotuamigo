@@ -1,0 +1,108 @@
+.box2{
+    height: 700px;
+    width: 1100px;
+    margin-top: 0px;
+    margin-right: 10px;
+    margin-left: 0px;
+    float: left;
+    background-image: url(../images/perrofondo2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+.contenido{
+    /*border: 1px solid rgb(111, 71, 255);*/
+    background-color: rgba(160, 189, 241, 0.685) !important;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 0;
+    width:820px;
+    height: 650px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: inset 0 2px 5px rgba(240, 171, 24, 0.425);/*sombra interna*/
+}
+.titulocontenido{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color:slategray;
+    margin: 0 auto;
+    padding-top: 15px;
+    padding-bottom: 20px;
+}
+
+.formulario_contacto{
+    padding: 0px;
+    margin:0 auto;
+    width: 380px;
+    height: 60px;
+
+}
+.formulario_contacto  form{
+    margin: 0 auto; /* centra el formulario*/
+    width: 360px;
+    height: 500px;
+    text-align: left;
+}
+.campo{
+    width: 250px;
+}
+.campo_asunto{
+    width: 310px;
+}
+.formulario_contacto label{
+    width: 25%;
+}
+.formulario_contacto input text{
+    width: 50%;
+}
+
+.form_radio {
+    width: 10%;
+}
+.formulario_contacto textarea{
+    width: 93%;
+    height: 64px;
+}
+.btn_planes{
+    color: #fff !important;
+    background-color: #33658a !important;
+    border-color: #007bffa4 !important;
+}
+
+.tabla_resultado{
+    margin-left: 10%;
+    background-color: #f8e090;
+    border: 1px solid #33658a;
+    width: 80%;
+}
+.tabla_resultado th, td, tr{
+    border: 1px solid #33658a;
+}
+.tabla_resultado thead{
+    background-color: #ffd340;
+}
+
+.col_1{
+    /* rut */
+    width: 10%;
+}
+.col_2{
+    /* nombre */
+    width: 15%;
+}
+.col_3{
+    /* apellidos */
+    width: 20%;
+}
+.col_4{
+    /* correo */
+    width: 20%;
+}
+.col_5{
+    /* cargo */
+    width: 15%;
+}
+.col_6{
+    /* acciones */
+    width: 20%;
+}
