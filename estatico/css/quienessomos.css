@@ -34,3 +34,10 @@
     margin-left: 10px;
     margin-right: 10px;
 }
+#calendar {
+    max-width: 800px;
+}
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}

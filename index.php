@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-    $array = array("estatico/css/home.css");
+    $arrayCss = array("estatico/css/home.css");
     include('vistas/comun/head.php');
 ?>
 <body>

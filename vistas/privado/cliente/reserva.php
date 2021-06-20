@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-    $array = array("../../../estatico/css/reserva.css");
+    $arrayCss = array("../../../estatico/css/reserva.css");
     include('../../comun/head.php');
 ?>
 <body>

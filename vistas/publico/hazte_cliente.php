@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-    $array = array("../../estatico/css/hazte_cliente.css");
+    $arrayCss = array("../../estatico/css/hazte_cliente.css");
     include('../comun/head.php');
 
     include("../../data/conexiondb.php");

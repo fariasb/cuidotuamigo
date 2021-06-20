@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-    $array = array("../../estatico/css/quienessomos.css");
+    $arrayCss = array("../../estatico/css/quienessomos.css");
     include('../comun/head.php');
 ?>
 <body>

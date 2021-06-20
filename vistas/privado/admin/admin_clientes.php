@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
   
-    $array = array("../../../estatico/css/agregar_trabajador.css");
+    $arrayCss = array("../../../estatico/css/agregar_trabajador.css");
     include('../../comun/head.php');
 
 ?>
