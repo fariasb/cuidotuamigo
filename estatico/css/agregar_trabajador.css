@@ -64,3 +64,15 @@
     border-color: #007bffa4 !important;
     
 }
+.select_mascota{
+    width: 32%;
+    display: inline;
+    border: 1px solid;
+    height: 34px;
+}
+.formulario_mascota form{
+    height: 506px !important;
+}
+.contenido_mascota{
+    height: 755px !important;
+}

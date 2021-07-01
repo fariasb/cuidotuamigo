@@ -1,0 +1,9 @@
+
+.nav-pills >  a.active {
+    background-color: #33658a !important;
+    color: white !important;
+}
+.nav-pills >  a {
+    color: #33658a !important;
+    background-color: #f5ffbf57 !important;
+}

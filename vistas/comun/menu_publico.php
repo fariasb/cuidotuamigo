@@ -22,7 +22,7 @@
 ?>
 <nav class="menu"> 
     <ul>
-        <li> <a href="<?php echo $pathIndex;?>index.php" ><span style="font-weight:bold"> Home </span></a></li>
+        <li> <a href="<?php echo $pathIndex;?>index.php" ><span style="font-weight:bold"> Inicio </span></a></li>
         <li> <a href="<?php echo $pathPublic;?>nosotros.php"><span style="font-weight:bold">Quiénes somos </span></a></li>
         <li> <a href="<?php echo $pathPublic;?>hazte_cliente.php"><span style="font-weight:bold">Hazte Cliente </span></a></li>
         <li> <a href="<?php echo $pathPublic;?>servicios.php"><span style="font-weight:bold">Servicios </span></a></li>

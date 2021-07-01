@@ -4,8 +4,17 @@
     include_once ($_SERVER['DOCUMENT_ROOT'].'/cuidotuamigo03/rutas.php');
     include (DATA_PATH."conexiondb.php");
 
-    //echo  __PROTOCOL__.__DOMAIN__."/".__CONTEXT__;
+    function debug_to_consoleH($data) {
+        $output = $data;
+        if (is_array($output))
+            $output = implode(',', $output);
     
+        echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
+    }
+    session_start();
+
+    //echo  __PROTOCOL__.__DOMAIN__."/".__CONTEXT__;
+    debug_to_consoleH(isset($_SESSION['id_usuario']));
     $requiereInicio = true;
     if(isset($_SESSION['id_usuario'])){
         $requiereInicio = false;
@@ -18,66 +27,10 @@
     $pathEstatico = ESTATICO_PATH;
     $pathPublico = VPUBLICO_PATH;
     $pathPrivadoAdmin = VPRIVADO_ADMIN_PATH;
+    $pathPrivadoCliente = VPRIVADO_CLIENTE_PATH;
     $pathComun = COMUN_PATH;
     $pathBase = ROOT_ESTATIC;
 
-    /*$pathEstatico = "estatico";
-    $pathData = "data";
-    $pathPublico = "vistas/publico/";
-    $pathPrivadoAdmin = "vistas/privado/admin";
-    $pathComun = "vistas/comun";
-    $pathBase = "";
-
-    if (endswithH($path, 'cuidotuamigo03')) {
-        if(isset($_SESSION)){
-            session_destroy();
-        }
-    }
-
-    if (endswithH($path, 'admin')) {
-        $pathEstatico = "../../../estatico";
-        $pathData = "../../../data";
-        $pathPrivadoAdmin = "";
-        $pathComun = "../../comun";
-        $pathBase = "../..";
-    }
-    if (endswithH($path, 'cliente')) {
-        $pathEstatico = "../../../estatico";
-        $pathData = "../../../data";
-        $pathComun = "../../comun";
-        $pathBase = "../..";
-    }
-    if ( endswithH($path, 'trabajador')) {
-        $pathEstatico = "../../../estatico";
-        $pathData = "../../../data";
-        $pathComun = "../../comun";
-        $pathBase = "../..";
-    }
-    if (endswithH($path, 'publico')) {
-        $pathEstatico = "../../estatico";
-        $pathPublico = "";
-        $pathPrivadoAdmin = "../privado/admin";
-        $pathData = "../../data";
-        $pathComun = "../comun";
-        $pathBase = "..";
-    }
-
-    if (endswithH($path, 'comun')) {
-        $pathEstatico = "../../estatico";
-        $pathPublico = "../publico/";
-        $pathData = "../../data";
-        $pathComun = "";
-        $pathBase = "../..";
-    }*/
-
-    function endswithH($string, $test) {
-        $strlen = strlen($string);
-        $testlen = strlen($test);
-        if ($testlen > $strlen) return false;
-        return substr_compare($string, $test, $strlen - $testlen, $testlen) === 0;
-    }
-
-    //include("$pathData/conexiondb.php");
 
     $errorLogin = false;
     $styleLogin = "";
@@ -98,33 +51,63 @@
 
         $resultado = $conex->query($queryUsuario);
 
+        echo "1: $resultado->num_rows";
+
         if($resultado->num_rows > 0){
+            //Si hay una sesion activa, se destruye
+            //if(isset($_SESSION['id_usuario'])){
+              //  session_destroy();
+            //}
+            
             $row = $resultado->fetch_assoc();
+
+            //Se buscan los datos de persona
+            $id_usuario = $row['id_usuario'];
             $perfil = $row['nombre_tipo_usuario'];
+
             if(strcasecmp($perfil,"administrador")==0){
-                session_start();
-                $id_usuario = $row['id_usuario'];
-                $_SESSION['id_usuario'] = $id_usuario;
-                
                 $queryDatos = "select per.nombre, per.apellido_paterno, per.apellido_materno from cuidotuamigodb.trabajador tr
                 inner join cuidotuamigodb.persona per on per.id_persona = tr.id_persona 
                 where tr.id_usuario  = '$id_usuario'";
 
                 $resultadoDatos = $conex->query($queryDatos);
-
+                echo "2: $resultadoDatos->num_rows";
                 if($resultadoDatos->num_rows > 0){
                     $rowDatos = $resultadoDatos->fetch_assoc();
+                    $errorLogin = false;
+                    $_SESSION['id_usuario'] = $id_usuario;
                     $_SESSION['nombre'] = $rowDatos['nombre'];
                     $_SESSION['apellido_paterno'] = $rowDatos['apellido_paterno'];
-                    $_SESSION['apellido_materno'] = $rowDatos['apellido_materno'];
-
-                    //echo ("Location:$pathPrivadoAdmin/admin_trabajadores.php");
-                    header("Location:$pathPrivadoAdmin/admin_trabajadores.php");
+                    $_SESSION['apellido_materno'] = $rowDatos['apellido_materno'];    
+                    header("Location:$pathPrivadoAdmin/admin_trabajadores.php");        
                 }else{
+                    session_destroy();
                     $errorLogin = true;
                     $styleLogin = "border: 2px solid red;";
                 }
-                
+               
+            }
+            if(strcasecmp($perfil,"cliente")==0){
+                $queryDatos = "select per.nombre, per.apellido_paterno, per.apellido_materno, cl.id_cliente from cuidotuamigodb.cliente cl
+                inner join cuidotuamigodb.persona per on per.id_persona = cl.id_persona 
+                where cl.id_usuario  = '$id_usuario'";
+
+                $resultadoDatos = $conex->query($queryDatos);
+                echo "2: $resultadoDatos->num_rows";
+                if($resultadoDatos->num_rows > 0){
+                    $rowDatos = $resultadoDatos->fetch_assoc();
+                    $errorLogin = false;
+                    $_SESSION['id_usuario'] = $id_usuario;
+                    $_SESSION['id_cliente'] =  $rowDatos['id_cliente'];
+                    $_SESSION['nombre'] = $rowDatos['nombre'];
+                    $_SESSION['apellido_paterno'] = $rowDatos['apellido_paterno'];
+                    $_SESSION['apellido_materno'] = $rowDatos['apellido_materno'];    
+                    header("Location:$pathPrivadoCliente/home.php");
+                }else{
+                    session_destroy();
+                    $errorLogin = true;
+                    $styleLogin = "border: 2px solid red;";
+                }
             }
 
         }else{
@@ -172,7 +155,7 @@
         ?>
              <form method="POST">
                 
-                <label style="color: white;">Hola <?php echo $_SESSION['nombre'];?>!   </label>
+                <label style="color: white;">Hola <?php echo $_SESSION['nombre']." ".$_SESSION['apellido_paterno']." ".$_SESSION['apellido_materno'];?>!   </label>
                 <a href="<?php echo $pathComun;?>/header.php?logout=true">Cerrar Sesión</a>
                 
             </form>
