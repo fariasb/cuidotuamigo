@@ -78,3 +78,45 @@
     margin-bottom: 2%;
     box-shadow: inset 0 2px 5px rgb(240 171 24 / 43%);
 }
+
+.filtros-res{
+  
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 5%;
+    margin-right: 5%;
+    background-color: rgba(160, 189, 241, 0.685) !important;
+    box-shadow: inset 0 2px 5px rgba(240, 171, 24, 0.425);/*sombra interna*/    
+}
+
+.formulario-res{
+    
+    padding-left: 40px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+.days-div{
+    margin-top: 5%;
+}
+.days-tab-avaible{
+    background-color: rgb(211 223 244 / 69%) !important
+}
+.days-div-hours{
+    height: 230px;
+}
+.days-hours{
+    margin-top: 1%;
+}
+.days-nav{
+    width: 90%;
+}
+
+.resumen-div{
+    margin-left: 5%;
+}
+
+.carga-horas{
+    background-color: rgba(160, 189, 241, 0.685) !important;
+}

@@ -1,6 +1,6 @@
 <?php
 
-    session_start();
+    
     include_once ($_SERVER['DOCUMENT_ROOT'].'/cuidotuamigo03/rutas.php');
     include (DATA_PATH."conexiondb.php");
 
