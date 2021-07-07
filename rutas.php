@@ -1,7 +1,7 @@
 <?php 
 define('__PROTOCOL__', 'http://');
 define('__DOMAIN__', 'localhost');
-define('__CONTEXT__', 'cuidotuamigo03/');
+define('__CONTEXT__', 'cuidotuamigo/');
 ///////////////////////////////////
 define('ROOT_ESTATIC', __PROTOCOL__.__DOMAIN__."/".__CONTEXT__);
 define('ROOT_PATH', $_SERVER['DOCUMENT_ROOT'].'/'.__CONTEXT__);

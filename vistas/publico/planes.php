@@ -87,7 +87,7 @@
                                </div>
                                <footer class="pricing-footer">
                                    <div>
-                                       <input type="button" value="Reservar" onclick="location.href='../privado/cliente/reserva.php'" class="btn  btn_planes"><br>
+                                       <input type="button" value="Reservar" onclick="location.href='../privado/cliente/reserva3.php'" class="btn  btn_planes"><br>
                                    </div>
                                </footer>
                            </div>

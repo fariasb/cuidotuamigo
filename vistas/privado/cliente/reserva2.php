@@ -3,7 +3,7 @@
     
     session_start();
    
-    include_once ($_SERVER['DOCUMENT_ROOT'].'/cuidotuamigo03/rutas.php');
+    include_once ($_SERVER['DOCUMENT_ROOT'].'/cuidotuamigo/rutas.php');
     include (DATA_PATH."conexiondb.php");
 
     function debug_to_console($data) {
