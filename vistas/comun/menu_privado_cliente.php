@@ -1,6 +1,6 @@
 <?php
     
-    include_once ($_SERVER['DOCUMENT_ROOT'].'/cuidotuamigo03/rutas.php');
+    include_once ($_SERVER['DOCUMENT_ROOT'].'/cuidotuamigo/rutas.php');
 
     $pathPrivadoCliente = VPRIVADO_CLIENTE_PATH;
 
