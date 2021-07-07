@@ -9,9 +9,9 @@
         if (is_array($output))
             $output = implode(',', $output);
     
-        echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
+        echo "<script>console.log('Debug Objects --: " . $output . "' );</script>";
     }
-    session_start();
+    
 
     //echo  __PROTOCOL__.__DOMAIN__."/".__CONTEXT__;
     debug_to_consoleH(isset($_SESSION['id_usuario']));
