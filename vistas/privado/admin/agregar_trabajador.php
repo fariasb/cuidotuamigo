@@ -4,7 +4,7 @@
 $array = array("../../../estatico/css/agregar_trabajador.css");
 include('../../comun/head.php');
 
-if (isset($_POST['submit'])) {
+if (isset($_POST['add_trab'])) {
   
     include("../../../data/conexiondb.php");
 
@@ -104,7 +104,7 @@ if (isset($_POST['submit'])) {
                         <input type="text" id="correo" name ="correo"><br><br>
                         <label for="cargo">Cargo:</label>
                         <input type="text" id="cargo" name ="cargo"><br><br>
-                        <input type="submit" value="Guardar"  name="submit" class="btn  btn_planes"><br><br>
+                        <input type="submit" value="Guardar"  name="add_trab" class="btn  btn_planes"><br><br>
                         
                     </form><br>
                     <form action="admin_trabajadores.php" method="POST">

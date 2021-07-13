@@ -28,6 +28,7 @@
     $pathPublico = VPUBLICO_PATH;
     $pathPrivadoAdmin = VPRIVADO_ADMIN_PATH;
     $pathPrivadoCliente = VPRIVADO_CLIENTE_PATH;
+    $pathPrivadoTrabajador = VPRIVADO_TRAB_PATH;
     $pathComun = COMUN_PATH;
     $pathBase = ROOT_ESTATIC;
 
@@ -35,7 +36,7 @@
     $errorLogin = false;
     $styleLogin = "";
 
-    if (isset($_POST['submit'])) {
+    if (isset($_POST['login_h'])) {
 
         $errorLogin = false;
         $styleLogin = "";
@@ -51,7 +52,7 @@
 
         $resultado = $conex->query($queryUsuario);
 
-        echo "1: $resultado->num_rows";
+        //echo "1: $resultado->num_rows";
 
         if($resultado->num_rows > 0){
             //Si hay una sesion activa, se destruye
@@ -66,16 +67,17 @@
             $perfil = $row['nombre_tipo_usuario'];
 
             if(strcasecmp($perfil,"administrador")==0){
-                $queryDatos = "select per.nombre, per.apellido_paterno, per.apellido_materno from cuidotuamigodb.trabajador tr
+                $queryDatos = "select tr.id_trabajador,per.nombre, per.apellido_paterno, per.apellido_materno from cuidotuamigodb.trabajador tr
                 inner join cuidotuamigodb.persona per on per.id_persona = tr.id_persona 
                 where tr.id_usuario  = '$id_usuario'";
 
                 $resultadoDatos = $conex->query($queryDatos);
-                echo "2: $resultadoDatos->num_rows";
+                //echo "2: $resultadoDatos->num_rows";
                 if($resultadoDatos->num_rows > 0){
                     $rowDatos = $resultadoDatos->fetch_assoc();
                     $errorLogin = false;
                     $_SESSION['id_usuario'] = $id_usuario;
+                    $_SESSION['id_trabajador'] =  $rowDatos['id_trabajador'];
                     $_SESSION['nombre'] = $rowDatos['nombre'];
                     $_SESSION['apellido_paterno'] = $rowDatos['apellido_paterno'];
                     $_SESSION['apellido_materno'] = $rowDatos['apellido_materno'];    
@@ -93,7 +95,7 @@
                 where cl.id_usuario  = '$id_usuario'";
 
                 $resultadoDatos = $conex->query($queryDatos);
-                echo "2: $resultadoDatos->num_rows";
+                //echo "2: $resultadoDatos->num_rows";
                 if($resultadoDatos->num_rows > 0){
                     $rowDatos = $resultadoDatos->fetch_assoc();
                     $errorLogin = false;
@@ -110,6 +112,30 @@
                 }
             }
 
+            if(strcasecmp($perfil,"paseador")==0){
+                $queryDatos = "select tr.id_trabajador,per.nombre, per.apellido_paterno, per.apellido_materno from cuidotuamigodb.trabajador tr
+                inner join cuidotuamigodb.persona per on per.id_persona = tr.id_persona 
+                where tr.id_usuario  = '$id_usuario'";
+
+                $resultadoDatos = $conex->query($queryDatos);
+                //echo "2: $resultadoDatos->num_rows";
+                if($resultadoDatos->num_rows > 0){
+                    $rowDatos = $resultadoDatos->fetch_assoc();
+                    $errorLoginVS = false;
+                    $styleLoginVS = "";
+                    $_SESSION['id_usuario'] = $id_usuario;
+                    $_SESSION['id_trabajador'] =  $rowDatos['id_trabajador'];
+                    $_SESSION['nombre'] = $rowDatos['nombre'];
+                    $_SESSION['apellido_paterno'] = $rowDatos['apellido_paterno'];
+                    $_SESSION['apellido_materno'] = $rowDatos['apellido_materno'];    
+                    header("Location:$pathPrivadoTrabajador/mi_cuenta.php");        
+                }else{
+                    session_destroy();
+                    $errorLoginVS = true;
+                    $styleLoginVS = "border: 2px solid red;";
+                }
+            }
+
         }else{
            $errorLogin = true;
            $styleLogin = "border: 2px solid red;";
@@ -117,6 +143,7 @@
     }
 
     if (isset($_GET['logout'])) {
+        unset($_SESSION['id_usuario']);
         session_destroy();
         header("Location:$pathBase/index.php");
     }
@@ -139,7 +166,7 @@
                 <input type="text" style="<?php echo $styleLogin;?>" name="correo" class="campolog" required placeholder="Correo">
                 
                 <input type="password" style="<?php echo $styleLogin;?>" name="pass" class="campolog" required placeholder="Contraseña">
-                <input type="submit"name="submit" value=">" class="btn btn-success"><br>
+                <input type="submit" name="login_h" value=">" class="btn btn-success"><br>
                 <?php
                     if ($errorLogin) {
                 ?>
@@ -153,10 +180,10 @@
         <?php
                 }else{
         ?>
-             <form method="POST">
+             <form>
                 
                 <label style="color: white;">Hola <?php echo $_SESSION['nombre']." ".$_SESSION['apellido_paterno']." ".$_SESSION['apellido_materno'];?>!   </label>
-                <a href="<?php echo $pathComun;?>/header.php?logout=true">Cerrar Sesión</a>
+                <a href="<?php echo $pathBase;?>/index.php?logout=true">Cerrar Sesión</a>
                 
             </form>
         <?php

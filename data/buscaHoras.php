@@ -23,14 +23,19 @@ function get_horas($fecha, $idTrab ) {
     $jsondata = array();
     
     //Sanitize ipnut y preparar query
-  
     
-    if ( $result = $database->query( "select id_horario, TIME_FORMAT(hora_dia, '%H:%i') as hora from cuidotuamigodb.horario where DATE_FORMAT(fecha,'%d-%m-%Y') = '$fecha' and id_trabajador=$idTrab" ) ) {
+    $query = "select h.id_horario, TIME_FORMAT(h.hora_dia, '%H:%i') as hora, a.id_atencion as id_atencion
+    from cuidotuamigodb.horario h
+    left join cuidotuamigodb.atencion a on a.id_horario = h.id_horario 
+    where DATE_FORMAT(h.fecha,'%d-%m-%Y') = '$fecha' 
+    and h.id_trabajador=$idTrab and a.id_atencion is NULL";
+    
+    if ( $result = $database->query( $query ) ) {
         
         if( $result->num_rows > 0 ) {
             
             $jsondata["success"] = true;
-            $jsondata["data"]["message"] = sprintf("Se han encontrado %d usuarios", $result->num_rows);
+            $jsondata["data"]["message"] = sprintf("Se han encontrado %d horarios", $result->num_rows);
             $jsondata["data"]["horarios"] = array();
             while( $row = $result->fetch_object() ) {
                 

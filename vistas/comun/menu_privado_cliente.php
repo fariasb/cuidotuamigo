@@ -9,7 +9,7 @@
     <ul>
         <li> <a href="<?php echo $pathPrivadoCliente;?>/home.php" ><span style="font-weight:bold"> Inicio </span></a></li>
         <li> <a href="<?php echo $pathPrivadoCliente;?>/nosotros.php"><span style="font-weight:bold">Quienes Somos </span></a></li>
-        <li> <a href="<?php echo $pathPrivadoCliente;?>/nosotros.php"><span style="font-weight:bold">Servicios </span></a></li>
+        <li> <a href="<?php echo $pathPrivadoCliente;?>/servicios.php"><span style="font-weight:bold">Servicios </span></a></li>
         <li> <a href="<?php echo $pathPrivadoCliente;?>/mi_cuenta.php"><span style="font-weight:bold">Mi Cuenta </span></a></li>
 
     </ul>

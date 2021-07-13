@@ -32,8 +32,8 @@
     
         <div class="contenido">
             <h2 >Mascotas</h2><br>
-            <div>
-                <table class="tabla_resultado">
+            <div class="table_mis_reservas_container">
+                <table class="table table-striped table_mis_reservas" style="background-color: white">
                     <thead>
                         <tr>
                             <th class="col_3">Nombre</th>

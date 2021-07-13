@@ -5,6 +5,10 @@
     include_once ($_SERVER['DOCUMENT_ROOT'].'/cuidotuamigo/rutas.php');
     include (DATA_PATH."conexiondb.php");
 
+    $array = array("../../../estatico/css/reserva.css");
+    $arrayJs = array("../../../estatico/js/reserva.js");
+    include('../../comun/head.php');
+
     function debug_to_console($data) {
         $output = $data;
         if (is_array($output))
@@ -13,13 +17,14 @@
         echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
     }
 
-    
+   
     $pathcliente = VPRIVADO_CLIENTE_PATH;
     
-    $array = array("../../../estatico/css/reserva.css");
-    $arrayJs = array("../../../estatico/js/reserva.js");
-    include('../../comun/head.php');
+   
 
+    if(isset($_SESSION['pl'])){
+        $planes = $_SESSION['pl'];
+    }
  
     
     date_default_timezone_set("America/Santiago");
@@ -43,9 +48,6 @@
     }
 ?>
 <script>
-
-    //const jsonListStr = "{'reservas':[]}";
-    //const reservasJson = JSON.parse(jsonListStr);
 
     const jsonListStr = '{ "reservas":[]}';
     const reservasJson = JSON.parse(jsonListStr);
@@ -73,6 +75,7 @@
 
         var dateToday = new Date();
         
+        $("#successMsge").hide();
       
         $(".date").datepicker({
             numberOfMonths: 1,
@@ -87,7 +90,7 @@
                     
                     if (response.success) {
                         console.log("exito : "+ response.data.message);
-                        //console.log("exito : "+ JSON.stringify(response.data.horarios));
+                        console.log("exito : "+ JSON.stringify(response.data.horarios));
                         var output = "";
                         $.each(response.data.horarios, function( key, value ) {
                             output += "<option value='" + value['id_horario'] + "'>"+value['hora']+"</option>";
@@ -116,7 +119,6 @@
 
     function agregarHorario(){
 
-        var rowCount = $('#reservas >tbody >tr').length;
 
         var fecha = $("#datepicker").val();
         var hora = $("#horarios option:selected").text();
@@ -133,25 +135,56 @@
             return;
         }
 
-
-        var tr= "<tr id='tr_"+(rowCount+1)+"'>";
-        tr += "<td>"+prof+"</td>";
-        tr += "<td>"+mascota+"</td>";
-        tr += "<td>"+fecha+"</td>";
-        tr += "<td>"+hora+"</td>";
-        tr += "<td><a href=\"javascript:eliminarHorario("+(rowCount+1)+");\"><span class=\"fa fa-trash\"></span></a></td>";
-        tr += "</tr>";
-        //$("#reservas>tbody").append("<tr><td class='col-1'>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>");
-        $("#reservas>tbody").append(tr);
-
         var idTrab = $("#profesional").val();
         var idMasc = $("#mascota").val();
         var idHorario = $("#horarios").val();
 
-        reservasJson.reservas.push({"idTrab":idTrab, "idMasc":idMasc, "idHorario":idHorario});
+        var existe = false;
+        var maxCount = 0;
+        for(var i = 0; i < reservasJson.reservas.length; i++) {
+            var obj = reservasJson.reservas[i];
+            if(obj.idTrab == idTrab && obj.idMasc==idMasc && obj.idHorario==idHorario){
+                existe = true;
+            }
+            if(obj.count > maxCount){
+                maxCount = obj.count;
+            }
+        }
+        if(existe){
+            alert("El horario ya se encuentra ingresado para este trabajador")
+            return;
+        }
+        var cantPlanes = <?php echo $planes;?>;
+        if(reservasJson.reservas.length >= cantPlanes){
+            alert("Según el plan seleccionado, no se pueden ingresar más de "+cantPlanes+" reserva(s)");
+            return;
+        }
+
+        var tr= "<tr id='tr_"+(maxCount+1)+"'>";
+        tr += "<td>"+prof+"</td>";
+        tr += "<td>"+mascota+"</td>";
+        tr += "<td>"+fecha+"</td>";
+        tr += "<td>"+hora+"</td>";
+        tr += "<td><a href=\"javascript:eliminarHorario("+(maxCount+1)+");\"><span class=\"fa fa-trash\"></span></a></td>";
+        tr += "</tr>";
+        //$("#reservas>tbody").append("<tr><td class='col-1'>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>");
+        $("#reservas>tbody").append(tr);
+
+        
+
+        reservasJson.reservas.push({"count":(maxCount+1),"idTrab":idTrab, "idMasc":idMasc, "idHorario":idHorario});
     }
     function eliminarHorario(id){
         $("#tr_"+id).remove(); 
+        var index = 0;
+        for(var i = 0; i < reservasJson.reservas.length; i++) {
+            var obj = reservasJson.reservas[i];
+            if(obj.count == id){
+                index = i;
+                break;
+            }
+        }
+        reservasJson.reservas.splice(index, 1);
     }
     function limpiaFecha(){
         $("#datepicker").val("");
@@ -166,6 +199,67 @@
 
     function guardar(){
         console.log(JSON.stringify(reservasJson))
+
+        var confirma= true;
+
+        var cantPlanes = <?php echo $planes;?>;
+        if(reservasJson.reservas.length < cantPlanes){
+            confirma = confirm("Aún le quedan disponible "+(cantPlanes-reservasJson.reservas.length)+" reserva(s). Si no confirma todas las reservas disponibles éstas no podrán ser agendadas después");
+        }
+        if(confirma){
+            var exito = true;
+            for(var i = 0; i < reservasJson.reservas.length; i++) {
+                var obj = reservasJson.reservas[i];
+
+                $.getJSON("../../../data/registraReserva.php", {    
+                    "idTrab": obj.idTrab,
+                    "idMasc": obj.idMasc,
+                    "idHorario": obj.idHorario
+                }).done(function(response) {
+                    
+                    if (response.success) {
+                        console.log("exito : "+ response.data.message);
+                    
+                    } else {
+                        console.log("fallo : "+ response.data.message);
+                    
+                    }
+                }).fail(function(jqXHR, textStatus, errorThrown) {
+                    console.log("Algo ha fallado : "+JSON.stringify(jqXHR));        
+                    exito = false;
+                });
+            }
+            if(exito){
+                
+                for(var i = 0; i < reservasJson.reservas.length; i++) {
+                    var obj = reservasJson.reservas[i];
+                    $("#tr_"+obj.count).remove(); 
+                }
+                reservasJson.reservas=[];
+                limpiaFecha();
+
+                var modal = document.getElementById("successMsge");
+                var btnCloses = document.getElementById("closesBtn");
+
+                btnCloses.onclick = function() {
+                    modal.style.display = "none";
+                    window.location.href = "home.php";
+                }
+                modal.style.display = "block";
+            }
+        }
+
+        
+    }
+
+    var modal = document.getElementById("successMsge");
+    
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
     }
 
  
@@ -177,10 +271,50 @@
         include('../../comun/header.php');
     ?>
     <?php
-        include('../../comun/menu_publico.php');
+        include('../../comun/menu_privado_cliente.php');
     ?>
+    <div id="successMsge" class="modal">
+        <div class="row">
+            <!-- Modal content -->
+            <div class="col-md-3"></div>
+            <div class="col-md-4 modal-content">
+                <div class="modal-content">
+                    <div class="row">
+                        <p>¡Se han registrado las reservas con Éxito!</p>
+                        <p>Puede gestionar sus reservas desde el menú</p>
+                        <p><strong>Mi cuenta > Mis Reservas</strong></p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4"><button id="closesBtn">Aceptar</button></div>
+                        <div class="col-md-4"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+       
+
+    </div>
 
     <div class="filtros-res formulario-res">
+        <?php if(isset($planes)){?>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-8" style="color: #0000e3">El plan seleccionado permite una cantidad máxima de reservas de : <strong> <?php echo $planes;?> </strong></div>
+        </div>
+        <br/>
+        <!--div class="container mt-3" id="successMsge">
+            <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success" role="alert">
+                    Se han registrado las reservas con Éxito. Puede gestionar sus reservas desde el menú <strong>Mi cuenta > Mis Reservas</strong>
+                </div>
+            </div>
+            </div>
+        </div>
+        <br/-->
+        <?php }?>
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-3">

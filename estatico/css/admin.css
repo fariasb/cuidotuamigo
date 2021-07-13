@@ -76,7 +76,7 @@
     width: 80%;
 }
 .tabla_resultado th, td, tr{
-    border: 1px solid #33658a;
+    /*border: 1px solid #33658a;*/
 }
 .tabla_resultado thead{
     background-color: #ffd340;
