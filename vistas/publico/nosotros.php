@@ -29,7 +29,7 @@
                     Comenzamos a trabajar en este ámbito de forma remunerada por el año 2014 donde por cosas del destino una
                     pareja de amigos veterinarios nos dejó a cargo su perrita, así comenzamos el servicio de guardería, lo
                     fuimos complementando con paseos y poco a poco se fueron sumando los clientes pasando a ser este,
-                    nuestro trabajo único y principal. <br><br>
+                    nuestro trabajo único y principal. <br>
 
                     Para nosotros es muy importante cuidar de su mascota como si cuidáramos a un integrante más de nuestra
                     propia familia, y como sabemos lo importante que ellos son para ustedes es que hemos ido aprendiendo ,

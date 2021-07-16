@@ -25,11 +25,10 @@
                 <br/>
 
                 <div class="serv_cont">
-                    <h4> Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, suscipit omnis? Quisquam,
-                        numquam accusamus a expedita sunt praesentium deserunt quis explicabo quasi consequuntur atque
-                        provident aliquid beatae quos eveniet repudiandae! ipsum dolor sit amet consectetur adipisicing
-                        elit.
-                    </h4>
+                    <h5><p>Paseos personalizados según las necesidades de su amigo, nos importa que sea un paseo divertido con oportunidad para sociabilizar con otros perritos de su barrio. </p> 
+                    <p>Tienen una duración entre 40 y 50 minutos, se ofrece agua durante el paseo, 
+                    se retira y se entrega en su domicilio. Debe presentar placa con su nombre y vacunas al día.</p>
+                    </h5>
                 </div>
                 <br/>
                 <div>
@@ -38,7 +37,7 @@
             </div>
 
             <div class="rectangulo" style = "float: left">
-                <div class="serv_cont" ><h3>Cuidado a domicilis</h3></div>
+                <div class="serv_cont" ><h3>Cuidado a domicilio</h3></div>
 
                 <div class="serv_cont">
                     <div class="fotoref">
@@ -48,11 +47,10 @@
                 <br/>
 
                 <div class="serv_cont">
-                    <h4> Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, suscipit omnis? Quisquam,
-                        numquam accusamus a expedita sunt praesentium deserunt quis explicabo quasi consequuntur atque
-                        provident aliquid beatae quos eveniet repudiandae! ipsum dolor sit amet consectetur adipisicing
-                        elit.
-                    </h4>
+                    <h5><p>Perros: visitas entre 40 y 50 minutos. Se alimentan, se limpia su entorno, se pasean y se les deja cómodos. Se envía registro fotográfico.</p>
+                     <P>Gatos: visitas entre 30 y 40 minutos. Se alimentan, se limpia su entorno o arenero, se juega con ellos y se les deja cómodos. Se envía registro fotográfico.</P>
+                    
+                    </h5>
                 </div>
                 <br/>
                 <div>
