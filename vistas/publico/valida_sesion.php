@@ -69,7 +69,7 @@
             if(strcasecmp($perfil,"cliente")==0){
                 $queryDatos = "select per.nombre, per.apellido_paterno, per.apellido_materno, cl.id_cliente from cuidotuamigodb.cliente cl
                 inner join cuidotuamigodb.persona per on per.id_persona = cl.id_persona 
-                where cl.id_usuario  = '$id_usuario'";
+                where cl.id_usuario  = '$id_usuario' and cl.estado_cliente='ACTIVO'";
 
                 $resultadoDatos = $conex->query($queryDatos);
                 //echo "2: $resultadoDatos->num_rows";
@@ -82,7 +82,7 @@
                     $_SESSION['nombre'] = $rowDatos['nombre'];
                     $_SESSION['apellido_paterno'] = $rowDatos['apellido_paterno'];
                     $_SESSION['apellido_materno'] = $rowDatos['apellido_materno'];    
-                    header("Location:$pathPrivadoCliente/home.php");
+                    header("Location:$pathPrivadoCliente/servicios.php");
                 }else{
                     session_destroy();
                     $errorLoginVS = true;

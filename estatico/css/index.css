@@ -126,6 +126,54 @@ body{
     text-decoration: none;/* Elimina subrayado*/
 }
 
+/** Menu Admin**/
+.menu_admin{
+    background-color: #f6ae2d;
+    height: 42px;
+    font-size: 0;
+    padding: 0;
+    box-sizing:border-box;
+    display: flex;
+    justify-content: space-around;
+
+}
+.menu_admin ul{
+    margin: 0;
+    padding: 0;
+    margin-left: 37px;
+    width: 965px;
+    float: right;
+    list-style: none /*eliminamos viñetas*/;
+}
+.menu_admin li{
+    float: left; /* flota la lista a la isquierda*/
+    padding: 5px 10px;
+    background-color:#f8e090;
+    border:1px solid  #f6ae2d;
+    display: flex;
+    align-items: center;
+    text-align:center;
+    color:#33658a;
+    height: 97%;
+}
+.menu_admin li:hover{
+    background-color:#33658a;
+    color:#f8e090;
+}
+.menu_admin li a:hover{
+    background-color:#33658a;
+    color:#f8e090;
+}
+
+.menu_admin li a{
+    padding: 0px 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 16px;
+    color: rgb(60, 83, 50);
+    font-weight: bold;/*negrita*/
+    text-decoration: none;/* Elimina subrayado*/
+}
+
 
 /*****  Otros***/
 

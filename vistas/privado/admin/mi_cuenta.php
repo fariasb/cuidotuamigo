@@ -7,7 +7,7 @@
     $array = array("../../../estatico/css/hazte_cliente.css");
     include('../../comun/head.php');
 
-    $pathPrivadoTrabajador = VPRIVADO_TRAB_PATH;
+    $pathPrivadoAdmin = VPRIVADO_ADMIN_PATH;
 
     $disabled = "readonly";
     $edicion = true;
@@ -30,7 +30,7 @@
     }
 
     if (isset($_POST['edita_cuenta'])) {
-        header("Location:$pathPrivadoTrabajador/editar_mi_cuenta.php");
+        header("Location:$pathPrivadoAdmin/editar_mi_cuenta.php");
     }
 
 ?>
@@ -42,7 +42,7 @@
             include('../../comun/header.php');
         ?>
         <?php
-            include('../../comun/menu_privado_trabajador.php');
+            include('../../comun/menu_privado_admin.php');
         ?>
 
         <article class="box2">

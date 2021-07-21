@@ -1,29 +1,18 @@
 <!DOCTYPE html>
 <?php
 
-    include_once ($_SERVER['DOCUMENT_ROOT'].'/cuidotuamigo/rutas.php');
+    $array = array("../../estatico/css/planes.css");
+    include('../comun/head.php');
 
-    $array = array("../../../estatico/css/planes.css");
-    include('../../comun/head.php');
-    
-
-    $pathPrivadoCliente = VPRIVADO_CLIENTE_PATH;
-
-    if(isset($_GET['pl'])){
-        $pl = $_GET['pl'];
-        echo $pl;
-        $_SESSION['pl'] = $pl;
-        header("Location:$pathPrivadoCliente/reserva3.php");
-    }
 ?>
 <body>
 
     <div id="contenedor"> <!-- Contenedor-->
-        <?php
-            include('../../comun/header.php');
+    <?php
+            include('../comun/header.php');
         ?>
         <?php
-            include('../../comun/menu_privado_cliente.php');
+            include('../comun/menu_publico.php');
         ?>
 
         <div >
@@ -52,7 +41,7 @@
                                </div>
                                <footer class="pricing-footer">
                                    <div>
-                                       <input type="button" value="Reservar" onclick="location.href='planes.php?pl=1'"  class="btn btn_planes"><br>
+                                       <input type="button" value="Reservar" onclick="location.href='valida_sesion.php'"  class="btn btn_planes"><br>
                                    </div>
                                </footer>
                            </div>
@@ -75,7 +64,7 @@
                                
                                <footer class="pricing-footer">
                                    <div>
-                                       <input type="button" value="Reservar" onclick="location.href='planes.php?pl=3'" class="btn btn_planes"><br>
+                                       <input type="button" value="Reservar" onclick="location.href='valida_sesion.php'" class="btn btn_planes"><br>
                                    </div>
                                </footer>
                            </div>
@@ -97,7 +86,7 @@
                                </div>
                                <footer class="pricing-footer">
                                    <div>
-                                       <input type="button" value="Reservar" onclick="location.href='planes.php?pl=5'" class="btn btn_planes"><br>
+                                       <input type="button" value="Reservar" onclick="location.href='valida_sesion.php'" class="btn btn_planes"><br>
                                    </div>
                                </footer>
                            </div>
@@ -109,7 +98,7 @@
        </div>
 
         <?php
-            include('../../comun/footer.php');
+            include('../comun/footer.php');
         ?>
 
     </div>

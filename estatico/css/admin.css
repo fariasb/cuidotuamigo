@@ -22,6 +22,18 @@
     border-radius: 5px;
     box-shadow: inset 0 2px 5px rgba(240, 171, 24, 0.425);/*sombra interna*/
 }
+.contenido_admin_clientes{
+    /*border: 1px solid rgb(111, 71, 255);*/
+    background-color: rgba(160, 189, 241, 0.685) !important;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 0;
+    width:998px;
+    height: 745px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: inset 0 2px 5px rgba(240, 171, 24, 0.425);/*sombra interna*/
+}
 .titulocontenido{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color:slategray;
@@ -84,7 +96,11 @@
 
 .col_1{
     /* rut */
-    width: 10%;
+    width: 27%;
+}
+.col_1_1{
+    /* rut */
+    width: 21%;
 }
 .col_2{
     /* nombre */

@@ -32,7 +32,7 @@
                 </div>
                 <br/>
                 <div>
-                    <input type="button" value=">> Ver Planes" onclick="location.href='planes.php'" class="btn  btn_planes"><br>
+                    <input type="button" value=">> Ver Planes" onclick="location.href='planes_paseos.php'" class="btn  btn_planes"><br>
                 </div>
             </div>
 
@@ -54,7 +54,7 @@
                 </div>
                 <br/>
                 <div>
-                    <input type="button" value=">> Ver Planes" onclick="location.href='planes.php'" class="btn  btn_planes"><br>
+                    <input type="button" value=">> Ver Planes" onclick="location.href='planes_visitas.php'" class="btn  btn_planes"><br>
                 </div>
             </div>
         </div>

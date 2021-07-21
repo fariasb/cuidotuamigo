@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-    $array = array("../../../estatico/css/admin.css");
+    $array = array("../../../estatico/css/mi_cuenta.css", "../../../estatico/css/admin.css", "../../../estatico/css/reserva.css","../../../estatico/font/css/all.css");
     include('../../comun/head.php');
 
     include("../../../data/conexiondb.php");
@@ -54,8 +54,8 @@
                     </form>
                 </div>
                 <br-->
-                <div>
-                    <table class="tabla_resultado">
+                <div class="table_mis_reservas_container">
+                    <table class="table table-striped table_mis_reservas" style="background-color: white; width:90%; margin-left:5%">
                         <thead>
                             <tr>
                                 <th class="col_1">Rut</th>
@@ -74,7 +74,7 @@
                             <td><?php echo $row['correo']; ?></td>
                             <td><?php echo $row['cargo']; ?></td>
                             <td>
-                                <a href="editar_trabajador.php?edit_id_persona=<?php echo $row['id_persona']?>&edit_id_trabajador=<?php echo $row['id_trabajador']?>" class="edit_btn" ><span class="fa fa-pencil"></span></a>
+                                <a href="editar_trabajador.php?edit_id_persona=<?php echo $row['id_persona']?>&edit_id_trabajador=<?php echo $row['id_trabajador']?>" class="edit_btn" ><span class="fas fa-pencil-alt"></span></a>
                             </td>
                             <td>
                                 <a href="admin_trabajadores.php?del_id_persona=<?php echo $row['id_persona']?>&del_id_trabajador=<?php echo $row['id_trabajador']?>" class="del_btn" onclick="return confirm('Esta seguro que desea eliminar el registro?');"><span class="fa fa-trash"></span></a>

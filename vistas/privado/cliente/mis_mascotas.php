@@ -39,20 +39,19 @@
                             <th class="col_3">Nombre</th>
                             <th class="col_1">Chip Mascota</th>
                             <th class="col_1">Especie</th>                                
-                            <th colspan="2" class="col_1">Acciones</th>
+                            <th class="col_1">Acciones</th>
                         </tr>
                     </thead>
                     <?php 
                         if(isset($resultado)){
                             while ($row = mysqli_fetch_array($resultado)) { ?>
                     <tr>
-                        <td><?php echo $row['nombre']; ?></td>
-                        <td><?php echo $row['chip_mascota']; ?></td>
-                        <td><?php echo $row['nombre_especie']; ?></td>
+                        <td class="col_3"><?php echo $row['nombre']; ?></td>
+                        <td class="col_1"><?php echo $row['chip_mascota']; ?></td>
+                        <td class="col_1"><?php echo $row['nombre_especie']; ?></td>
                         <td>
-                            <a href="editar_mascota.php?edit_id_mascotas=<?php echo $row['id_mascota']?>" class="edit_btn" ><span class="fa fa-pencil"></span></a>
-                        </td>
-                        <td>
+                            <a href="editar_mascota.php?edit_id_mascotas=<?php echo $row['id_mascota']?>" class="edit_btn" ><span class="fas fa-pencil-alt"></span></a>
+                            &nbsp;&nbsp;
                             <a href="mis_mascotas.php?del_id_mascotas=<?php echo $row['id_mascota']?>" class="del_btn" onclick="return confirm('Esta seguro que desea eliminar el registro de la mascota?');"><span class="fa fa-trash"></span></a>
                         </td>
                     </tr>
