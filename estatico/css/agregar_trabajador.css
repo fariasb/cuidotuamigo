@@ -70,6 +70,12 @@
     border: 1px solid;
     height: 34px;
 }
+.select_cargo{
+    width: 42%;
+    display: inline;
+    border: 1px solid;
+    height: 34px;
+}
 .formulario_mascota form{
     height: 506px !important;
 }

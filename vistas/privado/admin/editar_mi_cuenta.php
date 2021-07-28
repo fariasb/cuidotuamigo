@@ -69,8 +69,8 @@
                 if($resultadoUsuario->num_rows == 1){
                     $regUsuario = mysqli_fetch_array($resultadoUsuario);
                     $idUsuario = $regUsuario["id_usuario"];
-                    $queryUpdUsuario = "update cuidotuamigodb.usuario set contrasenia=$passNueva where id_usuario=$idUsuario";
-                    echo $queryUpdUsuario;
+                    $queryUpdUsuario = "update cuidotuamigodb.usuario set contrasenia='$passNueva' where id_usuario=$idUsuario";
+                    
                     $resultadoUpdateUsuario = mysqli_query($conex, $queryUpdUsuario);
                     if($resultadoUpdateUsuario){
 

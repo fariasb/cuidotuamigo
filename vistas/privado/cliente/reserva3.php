@@ -25,6 +25,10 @@
     if(isset($_SESSION['pl'])){
         $planes = $_SESSION['pl'];
     }
+    if(isset($_SESSION['tipoP'])){
+        $tipoPlan = $_SESSION['tipoP'];
+    }
+    echo $tipoPlan;
  
     
     date_default_timezone_set("America/Santiago");
@@ -199,6 +203,7 @@
 
     function guardar(){
         console.log(JSON.stringify(reservasJson))
+        var tp = $("#tp").val();
 
         var confirma= true;
 
@@ -214,7 +219,8 @@
                 $.getJSON("../../../data/registraReserva.php", {    
                     "idTrab": obj.idTrab,
                     "idMasc": obj.idMasc,
-                    "idHorario": obj.idHorario
+                    "idHorario": obj.idHorario,
+                    "tipoPlan": tp
                 }).done(function(response) {
                     
                     if (response.success) {
@@ -243,7 +249,7 @@
 
                 btnCloses.onclick = function() {
                     modal.style.display = "none";
-                    window.location.href = "home.php";
+                    window.location.href = "servicios.php";
                 }
                 modal.style.display = "block";
             }
@@ -281,7 +287,7 @@
                 <div class="modal-content">
                     <div class="row">
                         <p>¡Se han registrado las reservas con Éxito!</p>
-                        <p>Puede gestionar sus reservas desde el menú</p>
+                        <p>Puede gestionar sus reservas desde el menú &nbsp;</p>
                         <p><strong>Mi cuenta > Mis Reservas</strong></p>
                     </div>
                     <div class="row">
@@ -304,16 +310,7 @@
             <div class="col-md-8" style="color: #0000e3">El plan seleccionado permite una cantidad máxima de reservas de : <strong> <?php echo $planes;?> </strong></div>
         </div>
         <br/>
-        <!--div class="container mt-3" id="successMsge">
-            <div class="row">
-            <div class="col-md-12">
-                <div class="alert alert-success" role="alert">
-                    Se han registrado las reservas con Éxito. Puede gestionar sus reservas desde el menú <strong>Mi cuenta > Mis Reservas</strong>
-                </div>
-            </div>
-            </div>
-        </div>
-        <br/-->
+        <input type="hidden" id="tp" name="tp" value="<?= $tipoPlan;?>">
         <?php }?>
         <div class="row">
             <div class="col-md-1"></div>

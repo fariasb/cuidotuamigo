@@ -10,10 +10,10 @@
 
 
     
-    $data = [
-        'error' => true,
-        'mensaje' => 'El trabajador no fue encontrado' 
-    ];  
+        $data = [
+            'error' => true,
+            'mensaje' => 'El trabajador no fue encontrado' 
+        ];  
 
 
         $idPersona=$_GET["edit_id_persona"];
@@ -56,7 +56,7 @@
         $resultadoUpdate = mysqli_query($conex, $queryUpdatePersona);
 
 
-        $queryUpdateTrabajador = "update trabajador set cargo='$cargo'
+        $queryUpdateTrabajador = "update trabajador set id_tipo_trabajador='$cargo'
         where id_trabajador=$idTrabajador";
         $resultadoUpdate = mysqli_query($conex, $queryUpdateTrabajador);
 
@@ -121,7 +121,20 @@
                         <label for="correo">Correo:</label>
                         <input type="text" id="correo" name ="correo" value="<?= $reg['correo'] ?>"><br><br>
                         <label for="cargo">Cargo:</label>
-                        <input type="text" id="cargo" name ="cargo"  value="<?= $regTrab['cargo'] ?>"><br><br>
+                        <select class="form-control select_cargo" id="cargo" name="cargo">
+                            <?php
+                                if("1" == $regTrab['id_tipo_trabajador'] ){
+                                    echo "<option  value='1' selected>Paseador</option>";
+                                }else{
+                                    echo "<option value='1'>Paseador</option>";
+                                }
+                                if("2" == $regTrab['id_tipo_trabajador'] ){
+                                    echo "<option value='2' selected>Administrador</option>";
+                                }else{
+                                    echo "<option value='2'>Administrador</option>";
+                                }
+                            ?>  
+                        </select><br><br>
                         <input type="submit" value="Guardar"  name="submit" class="btn  btn_planes"><br><br>
                         
                     </form><br>

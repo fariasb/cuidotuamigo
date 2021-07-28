@@ -28,7 +28,7 @@ function get_horas($fecha, $idTrab ) {
     from cuidotuamigodb.horario h
     left join cuidotuamigodb.atencion a on a.id_horario = h.id_horario 
     where DATE_FORMAT(h.fecha,'%d-%m-%Y') = '$fecha' 
-    and h.id_trabajador=$idTrab and a.id_atencion is NULL";
+    and h.id_trabajador=$idTrab and a.id_atencion is NULL order by hora asc";
     
     if ( $result = $database->query( $query ) ) {
         

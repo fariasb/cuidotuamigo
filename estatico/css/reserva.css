@@ -89,6 +89,22 @@
     box-shadow: inset 0 2px 5px rgba(240, 171, 24, 0.425);/*sombra interna*/    
 }
 
+.filtros-horarios{
+  
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 5%;
+
+}
+
+.formulario-horario{
+    
+    padding-left: 40px;
+    padding-bottom: 40px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
 .formulario-res{
     
     padding-left: 40px;
@@ -195,6 +211,9 @@ table tbody tr {
 .table_mis_reservas{
     width: 93%;
     margin: 4%;
+}
+.table_mis_reservas_tr_5{
+    width: 5%;
 }
 .table_mis_reservas_tr_10{
     width: 10%;

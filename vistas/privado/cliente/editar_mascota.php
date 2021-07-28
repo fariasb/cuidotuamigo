@@ -30,8 +30,11 @@
 
     $regMascota = mysqli_fetch_array($resultMascota);
 
-    $query = "SELECT id_especie, nombre_especie FROM especie ORDER BY nombre_especie";
-    $result = mysqli_query($conex,$query);
+    $queryEspecie = "SELECT id_especie, nombre_especie FROM especie ORDER BY nombre_especie";
+    $resultEspecie = mysqli_query($conex,$queryEspecie);
+
+    
+    
 
     if (isset($_POST['guardar_edit_mascota'])) {
 
@@ -136,20 +139,20 @@
                                 <label for="especie">Especie:</label>
                                 <select class="form-control select_mascota" id="especie" name="especie">
                                     <?php 
-                                    while ($row = mysqli_fetch_array($result))
-                                    {
-                                        if($row['id_especie'] == $regMascota['id_especie'] ){
-                                            echo "<option value=".$row['id_especie']." selected>".$row['nombre_especie']."</option>";
-                                        }else{
-                                            echo "<option value=".$row['id_especie'].">".$row['nombre_especie']."</option>";
+                                        while ($row = mysqli_fetch_array($resultEspecie))
+                                        {
+                                            if($row['id_especie'] == $regMascota['id_especie'] ){
+                                                echo "<option value=".$row['id_especie']." selected>".$row['nombre_especie']."</option>";
+                                            }else{
+                                                echo "<option value=".$row['id_especie'].">".$row['nombre_especie']."</option>";
+                                            }
                                         }
-                                    }
                                     ?>       
                                 </select><br>
 
                                 <label for="raza">Raza:</label>
                                 <input type="text" id="raza" name="raza" value="<?= $regMascota['raza'] ?>"><br>
-                                <label for="edad">Edad:</label>
+                                <label for="edad">Edad(años):</label>
                                 <input type="text" id="edad" name ="edad" value="<?= $regMascota['edad'] ?>"><br>
                                 <label for="fecha">Fecha Nacimiento:</label>
                                 <input id="datepickerfrom" type="date" name="fecha" width="250" value="<?= $regMascota['fecha_nacto'] ?>"/><br>
@@ -188,7 +191,26 @@
                                     ?>  
                                 </select><br>
                                 <label for="vacunas">Vacunas:</label>
-                                <input type="text" id="vacunas" name="vacunas" value="<?= $regMascota['vacunas'] ?>"><br>
+                                <select class="form-control select_mascota" id="vacunas" name="vacunas" value="<?= $regMascota['vacunas'] ?>">
+                                    <?php
+                                        if("Al dia" == $regMascota['vacunas'] ){
+                                            echo "<option selected>Al dia</option>";
+                                            echo "<option>Pendiente</option>";
+                                            echo "<option>No tiene</option>";
+                                        } elseif ("Pendiente" == $regMascota['vacunas']) {
+                                            echo "<option>Al dia</option>";
+                                            echo "<option selected>Pendiente</option>";
+                                            echo "<option>No tiene</option>";
+                                        } else {
+                                            echo "<option>Al dia</option>";
+                                            echo "<option>Pendiente</option>";
+                                            echo "<option selected>No tiene</option>";
+                                        }
+                                        
+                                    ?>  
+                                    
+                                </select><br>
+                                
                                 <label for="enfermedad">Enfermedad:</label>
                                 <input type="text" id="enfermedad" name="enfermedad" value="<?= $regMascota['enfermedad'] ?>"><br><br>
                                 <input type="submit" value="Guardar"  name="guardar_edit_mascota" class="btn  btn_planes"><br><br>

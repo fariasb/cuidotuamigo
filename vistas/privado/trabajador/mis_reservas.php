@@ -11,12 +11,13 @@
     if (isset($_SESSION['id_trabajador'])) {
         $idTrabajador = $_SESSION['id_trabajador'];
 
-        $consulta = "select a.id_atencion, m.nombre as mascota, p.nombre, p.apellido_paterno, h.fecha , h.hora_dia , a.estado_atencion from cuidotuamigodb.atencion a 
+        $consulta = "select a.id_atencion, m.nombre as mascota, p.nombre, p.apellido_paterno, h.fecha , h.hora_dia , a.estado_atencion, pl.nombre_plan  from cuidotuamigodb.atencion a 
         inner join cuidotuamigodb.mascota m on m.id_mascota = a.id_mascota 
         inner join cuidotuamigodb.cliente c on c.id_cliente = m.id_cliente 
         inner join cuidotuamigodb.horario h on h.id_horario = a.id_horario 
         inner join cuidotuamigodb.trabajador t on t.id_trabajador  = a.id_trabajador 
         inner join cuidotuamigodb.persona p on p.id_persona = c.id_persona 
+        inner join cuidotuamigodb.plan pl on pl.id_plan = a.id_plan
         where t.id_trabajador = $idTrabajador
         order by h.fecha, h.hora_dia desc"; 
 
@@ -57,14 +58,16 @@
             $edit = true;
 
             $queryAtencion = "select a.id_atencion, a.estado_atencion ,m.nombre as mnombre, p.nombre, p.apellido_paterno, p.apellido_materno, p.direccion, p.telefono,
-            co.nombre_comuna , h.fecha ,TIME_FORMAT(h.hora_dia, '%H:%i') as hora_dia , m.color, m.raza , m.sexo from cuidotuamigodb.atencion a 
+            co.nombre_comuna , h.fecha ,TIME_FORMAT(h.hora_dia, '%H:%i') as hora_dia , m.color, m.raza , m.sexo, m.edad, m.vacunas, m.enfermedad,  pl.nombre_plan from cuidotuamigodb.atencion a 
             inner join cuidotuamigodb.mascota m on m.id_mascota = a.id_mascota 
             inner join cuidotuamigodb.cliente c on c.id_cliente = m.id_cliente 
             inner join cuidotuamigodb.horario h on h.id_horario = a.id_horario 
             inner join cuidotuamigodb.trabajador t on t.id_trabajador  = a.id_trabajador 
             inner join cuidotuamigodb.persona p on p.id_persona = c.id_persona 
             inner join cuidotuamigodb.comuna co on co.id_comuna = p.id_comuna 
+            inner join cuidotuamigodb.plan pl on pl.id_plan = a.id_plan
             where a.id_atencion =$editIdAtencion";
+
             $resultadoAtencion = mysqli_query($conex,$queryAtencion);
 
             $rowAtencion = mysqli_fetch_array($resultadoAtencion);
@@ -94,11 +97,12 @@
                     <table class="table table-striped table_mis_reservas" style="background-color: white" id="reservas">
                         <thead>
                             <tr>
-                            <th scope="col" class="table_mis_reservas_tr_10"></th>
+                            <th scope="col" class="table_mis_reservas_tr_5"></th>
                             <th scope="col" class="table_mis_reservas_tr_15">Mascota</th>
                             <th scope="col" class="table_mis_reservas_tr_20">Tutor</th>
-                            <th scope="col" class="table_mis_reservas_tr_15">Fecha</th>
+                            <th scope="col" class="table_mis_reservas_tr_20">Fecha</th>
                             <th scope="col" class="table_mis_reservas_tr_15">Hora</th>
+                            <th scope="col" class="table_mis_reservas_tr_15">Tipo</th>
                             <th scope="col" class="table_mis_reservas_tr_15">Estado</th>
                             <th scope="col" class="table_mis_reservas_tr_10">Acción</th>
                             </tr>
@@ -108,7 +112,7 @@
                                 if(isset($resultado)){
                                     while ($row = mysqli_fetch_array($resultado)) { ?>
                             <tr>
-                                <td class="table_mis_reservas_tr_10">
+                                <td class="table_mis_reservas_tr_5">
                                     <?php 
                                         if(isset($row['estado_atencion']) && strcasecmp($row['estado_atencion'],"pendiente") == 0){
                                     ?>  
@@ -123,8 +127,9 @@
                                 </td>
                                 <td class="table_mis_reservas_tr_15"><?php echo $row['mascota']; ?></td>
                                 <td class="table_mis_reservas_tr_20"><?php echo $row['nombre']." ".$row['apellido_paterno']; ?></td>
-                                <td class="table_mis_reservas_tr_15"><?php echo $row['fecha']; ?></td>
+                                <td class="table_mis_reservas_tr_20"><?php echo $row['fecha']; ?></td>
                                 <td class="table_mis_reservas_tr_15"><?php echo $row['hora_dia']; ?></td>
+                                <td class="table_mis_reservas_tr_15"><?php echo $row['nombre_plan']; ?></td>
                                 <td class="table_mis_reservas_tr_15"><?php echo $row['estado_atencion']; ?></td>
 
                                 <td class="table_mis_reservas_tr_10">
@@ -176,8 +181,16 @@
                             <div class="col-md-1"></div>    
                             <div class="col-md-2" style="text-align: left">Color:</div>
                             <div class="col-md-3" style="text-align: left"><?php echo $rowAtencion['color']; ?></div>
-                            <div class="col-md-2" style="text-align: left"></div>
-                            <div class="col-md-3" style="text-align: left"></div>
+                            <div class="col-md-2" style="text-align: left">Edad:</div>
+                            <div class="col-md-3" style="text-align: left"><?php echo $rowAtencion['edad']; ?> años</div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-1"></div>    
+                            <div class="col-md-2" style="text-align: left">Vacunas:</div>
+                            <div class="col-md-3" style="text-align: left"><?php echo $rowAtencion['vacunas']; ?></div>
+                            <div class="col-md-2" style="text-align: left">Enfermedad:</div>
+                            <div class="col-md-3" style="text-align: left"><?php echo $rowAtencion['enfermedad']; ?></div>
                         </div>
                         <br>
                         <div class="row">

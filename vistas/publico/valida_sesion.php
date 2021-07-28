@@ -55,10 +55,11 @@
                     $errorLoginVS = false;
                     $styleLoginVS = "";
                     $_SESSION['id_usuario'] = $id_usuario;
+                    $_SESSION['id_trabajador'] = $rowDatos['id_trabajador'];
                     $_SESSION['nombre'] = $rowDatos['nombre'];
                     $_SESSION['apellido_paterno'] = $rowDatos['apellido_paterno'];
                     $_SESSION['apellido_materno'] = $rowDatos['apellido_materno'];    
-                    header("Location:$pathPrivadoAdmin/admin_trabajadores.php");        
+                    header("Location:$pathPrivadoAdmin/mi_cuenta.php");        
                 }else{
                     session_destroy();
                     $errorLoginVS = true;

@@ -16,8 +16,8 @@
     include('../../comun/head.php');
 
 
-    $query = "SELECT id_especie, nombre_especie FROM especie ORDER BY nombre_especie";
-    $result = mysqli_query($conex,$query);
+    $queryEspecie = "SELECT id_especie, nombre_especie FROM especie ORDER BY nombre_especie";
+    $resultEspecie = mysqli_query($conex,$queryEspecie);
 
     if (isset($_POST['guardar_mascota'])) {
 
@@ -52,9 +52,9 @@
             VALUES($idCliente, '$nombre', '$chip',  $especie, '$raza', $edad, '$fecha', '$sexo', '$tamanio', '$color', '$esterilizada', '$vacunas', '$enfermedad');
             "; 
 
-            $resultado = mysqli_query($conex, $consulta);
+            $resultadoMascota = mysqli_query($conex, $consulta);
             
-            if ($resultado){
+            if ($resultadoMascota){
                 
             }else{
                 echo mysqli_error($conex);
@@ -71,7 +71,7 @@
 
 <body>
 
-<div id="contenedor"> <!-- Contenedor-->
+    <div id="contenedor"> <!-- Contenedor-->
         <?php
             include('../../comun/header.php');
         ?>
@@ -99,7 +99,7 @@
                         <h2> Agregar Mascota  </h2><br>
 
                         <?php
-                            if (isset($resultado)) {
+                            if (isset($resultadoMascota)) {
                         ?>
                             <div class="container mt-3">
                                 <div class="row">
@@ -126,7 +126,7 @@
                                 <label for="especie">Especie:</label>
                                 <select class="form-control select_mascota" id="especie" name="especie">
                                     <?php 
-                                    while ($row = mysqli_fetch_array($result))
+                                    while ($row = mysqli_fetch_array($resultEspecie))
                                     {
                                         echo "<option value=".$row['id_especie'].">".$row['nombre_especie']."</option>";
                                     }
@@ -135,7 +135,7 @@
 
                                 <label for="raza">Raza:</label>
                                 <input type="text" id="raza" name="raza" ><br>
-                                <label for="edad">Edad:</label>
+                                <label for="edad">Edad(años):</label>
                                 <input type="text" id="edad" name ="edad"><br>
                                 <label for="fecha">Fecha Nacimiento:</label>
                                 <input id="datepickerfrom" type="date" name="fecha" width="250"/><br>
@@ -154,7 +154,11 @@
                                     <option>No</option>
                                 </select><br>
                                 <label for="vacunas">Vacunas:</label>
-                                <input type="text" id="vacunas" name="vacunas" ><br>
+                                <select class="form-control select_mascota" id="vacunas" name="vacunas">
+                                    <option>Al dia</option>
+                                    <option>Pendiente</option>
+                                    <option>No tiene</option>
+                                </select><br>
                                 <label for="enfermedad">Enfermedad:</label>
                                 <input type="text" id="enfermedad" name="enfermedad" ><br><br>
                                 <input type="submit" value="Guardar"  name="guardar_mascota" class="btn  btn_planes"><br><br>

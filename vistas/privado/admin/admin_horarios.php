@@ -5,7 +5,7 @@
     include_once ($_SERVER['DOCUMENT_ROOT'].'/cuidotuamigo/rutas.php');
     include (DATA_PATH."conexiondb.php");
 
-    $array = array("../../../estatico/css/reserva.css");
+    $array = array("../../../estatico/css/mi_cuenta.css", "../../../estatico/css/admin.css", "../../../estatico/css/reserva.css","../../../estatico/font/css/all.css");
     $arrayJs = array("../../../estatico/js/reserva.js");
     include('../../comun/head.php');
 
@@ -326,6 +326,8 @@
         <?php
             include('../../comun/menu_privado_admin.php');
         ?>
+         <div class="contenido_admin_clientes">
+                <h2 >Horarios disponibles de Trabajadores</h2><br>
 
         <div id="successMsge" class="modal">
             <div class="row">
@@ -347,7 +349,7 @@
             </div>
         </div>
 
-        <div class="filtros-res formulario-res">
+        <div class="filtros-horarios formulario-horario">
             <div class="row">
                 <div class="col-md-1"></div>
                 <div class="col-md-3">
@@ -419,6 +421,7 @@
             </div>
         </div>
         <br/>
+                </div>
 
         <?php
             include('../../comun/footer.php');

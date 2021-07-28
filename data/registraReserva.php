@@ -1,12 +1,12 @@
 <?php
 
-if( isset($_GET['idTrab']) && isset($_GET['idMasc']) && isset($_GET['idHorario']) ) {
-    registraHorario($_GET['idTrab'], $_GET['idMasc'], $_GET['idHorario']);
+if( isset($_GET['idTrab']) && isset($_GET['idMasc']) && isset($_GET['idHorario']) && isset($_GET['tipoPlan']) ) {
+    registraHorario($_GET['idTrab'], $_GET['idMasc'], $_GET['idHorario'],$_GET['tipoPlan']);
 } else {
     die("Solicitud no válida.");
 }
 
-function registraHorario($idTrab, $idMasc, $idHorario ) {
+function registraHorario($idTrab, $idMasc, $idHorario, $tipoPlan ) {
     
     //Cambia por los detalles de tu base datos
     $dbserver = "localhost";
@@ -25,8 +25,8 @@ function registraHorario($idTrab, $idMasc, $idHorario ) {
     //Sanitize ipnut y preparar query
 
     $queryInsert = "INSERT INTO cuidotuamigodb.atencion
-                    (id_horario, id_trabajador, id_mascota, estado_atencion)
-                    VALUES($idHorario, $idTrab, $idMasc, 'PENDIENTE');
+                    (id_horario, id_trabajador, id_mascota, estado_atencion, id_plan)
+                    VALUES($idHorario, $idTrab, $idMasc, 'PENDIENTE', $tipoPlan);
                     ";
 
     $resultado = mysqli_query($database, $queryInsert);

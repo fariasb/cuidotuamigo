@@ -81,7 +81,7 @@
                     $_SESSION['nombre'] = $rowDatos['nombre'];
                     $_SESSION['apellido_paterno'] = $rowDatos['apellido_paterno'];
                     $_SESSION['apellido_materno'] = $rowDatos['apellido_materno'];    
-                    header("Location:$pathPrivadoAdmin/admin_trabajadores.php");        
+                    header("Location:$pathPrivadoAdmin/mi_cuenta.php");        
                 }else{
                     session_destroy();
                     $errorLogin = true;
@@ -174,7 +174,7 @@
                 <?php
                     }
                 ?>
-                <a href="<?php echo $pathPublico;?>hazte_cliente.php">Hazte Cliente!</a>
+                <a style="color:#f8e090;" href="<?php echo $pathPublico;?>hazte_cliente.php">Hazte Cliente!</a>
                 
             </form>
         <?php
@@ -183,7 +183,7 @@
              <form>
                 
                 <label style="color: white;">Hola <?php echo $_SESSION['nombre']." ".$_SESSION['apellido_paterno']." ".$_SESSION['apellido_materno'];?>!   </label>
-                <a href="<?php echo $pathBase;?>/index.php?logout=true">Cerrar Sesión</a>
+                <a style="color:tomato;" href="<?php echo $pathBase;?>/index.php?logout=true">Cerrar Sesión</a>
                 
             </form>
         <?php

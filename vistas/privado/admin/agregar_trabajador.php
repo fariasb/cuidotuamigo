@@ -23,34 +23,67 @@ if (isset($_POST['add_trab'])) {
     $rut = $_POST["rut"];
     $correo = $_POST["correo"];
     $cargo = $_POST["cargo"];
-    
-    
-    $consulta = "INSERT INTO persona (nombre, rut, apellido_paterno, apellido_materno, correo)
-    VALUES ('$nombre','$rut', '$apellido_pat', '$apellido_mat','$correo')"; 
 
-    $resultado = mysqli_query($conex, $consulta);
-    
-    if ($resultado){
-        $consulta = "select id_persona from persona where rut ='$rut'";
-        $resultado = mysqli_query($conex, $consulta);
-        if (isset($resultado)) {
-            while ($row = mysqli_fetch_array($resultado)) {
-               
-                $id_persona = $row['id_persona'];
+    $queryValida= "select id_usuario from cuidotuamigodb.usuario u where u.correo ='$correo'";
+    $resultadoValida = mysqli_query($conex, $queryValida);
 
-                $consulta = "INSERT INTO trabajador (id_tipo_trabajador, id_usuario, id_persona, cargo) 
-                VALUES ('1','1', '$id_persona','$cargo')";
+    if($resultadoValida && $resultadoValida->num_rows >0){
+        $alerta = true;
 
-                $resultadoInsert = mysqli_query($conex, $consulta);
-                if ($resultadoInsert){
-                   
-                }else{
-                    $data['error'] = true;
-                    $data['mensaje'] = "No se pudo crear el trabajador";
-                }
+        $data = [
+            'error' => true,
+            'mensaje' => 'El correo indicado en la solicitud ya se encuentra registrado en otro trabajador' 
+        ];
+    }else{
+        $queryCreateUser = "INSERT INTO cuidotuamigodb.usuario
+        (id_perfil_usuario, correo, contrasenia)
+        VALUES($cargo, '$correo', 'trab01');
+        ";
+
+        $resultadoCreate = mysqli_query($conex, $queryCreateUser);
+        if ($resultadoCreate){
+
+            $querySelect = "select id_usuario from cuidotuamigodb.usuario u where u.correo ='$correo'";
+            $resultadoSelect = mysqli_query($conex, $querySelect);
+        
+            if($resultadoSelect && $resultadoSelect->num_rows == 1){
+                $rowSelect = mysqli_fetch_array($resultadoSelect);
+                $idUsuario = $rowSelect["id_usuario"];
+
+                $consulta = "INSERT INTO persona (nombre, rut, apellido_paterno, apellido_materno, correo)
+                VALUES ('$nombre','$rut', '$apellido_pat', '$apellido_mat','$correo')"; 
+            
+                $resultado = mysqli_query($conex, $consulta);
+                
+                if ($resultado){
+                    $consulta = "select id_persona from persona where rut ='$rut'";
+                    $resultado = mysqli_query($conex, $consulta);
+                    if (isset($resultado)) {
+                        while ($row = mysqli_fetch_array($resultado)) {
+                           
+                            $id_persona = $row['id_persona'];
+            
+                            $consulta = "INSERT INTO trabajador (id_tipo_trabajador, id_usuario, id_persona) 
+                            VALUES ($cargo,$idUsuario, '$id_persona')";
+            
+                            $resultadoInsert = mysqli_query($conex, $consulta);
+                            if ($resultadoInsert){
+                               
+                            }else{
+                                $data['error'] = true;
+                                $data['mensaje'] = "No se pudo crear el trabajador";
+                            }
+                        }
+                    }
+                };
             }
+        }else{
+            echo mysqli_error($conex);
         }
-    };
+    }
+    
+    
+    
 
   } catch(PDOException $error) {
     $data['error'] = true;
@@ -103,7 +136,10 @@ if (isset($_POST['add_trab'])) {
                         <label for="correo">Correo:</label>
                         <input type="text" id="correo" name ="correo"><br><br>
                         <label for="cargo">Cargo:</label>
-                        <input type="text" id="cargo" name ="cargo"><br><br>
+                        <select class="form-control select_cargo" id="cargo" name="cargo">
+                            <option value="1">Paseador</option>
+                            <option value="2">Administrador</option>
+                        </select><br><br>
                         <input type="submit" value="Guardar"  name="add_trab" class="btn  btn_planes"><br><br>
                         
                     </form><br>

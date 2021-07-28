@@ -10,8 +10,9 @@
 
     if(isset($_GET['pl'])){
         $pl = $_GET['pl'];
-        echo $pl;
+        $tipo = $_GET['t'];
         $_SESSION['pl'] = $pl;
+        $_SESSION['tipoP'] = $tipo;
         header("Location:$pathPrivadoCliente/reserva3.php");
     }
 ?>
@@ -52,7 +53,7 @@
                                </div>
                                <footer class="pricing-footer">
                                    <div>
-                                       <input type="button" value="Reservar" onclick="location.href='planes_visitas.php?pl=1'"  class="btn  btn_planes"><br>
+                                       <input type="button" value="Reservar" onclick="location.href='planes_visitas.php?pl=1&t=2'"  class="btn  btn_planes"><br>
                                    </div>
                                </footer>
                            </div>
@@ -76,7 +77,7 @@
                                
                                <footer class="pricing-footer">
                                    <div>
-                                       <input type="button" value="Reservar" onclick="location.href='planes_visitas.php?pl=3'" class="btn  btn_planes"><br>
+                                       <input type="button" value="Reservar" onclick="location.href='planes_visitas.php?pl=3&t=2'" class="btn  btn_planes"><br>
                                    </div>
                                </footer>
                            </div>
@@ -99,7 +100,7 @@
                                </div>
                                <footer class="pricing-footer">
                                    <div>
-                                       <input type="button" value="Reservar" onclick="location.href='planes_visitas.php?pl=5'" class="btn  btn_planes"><br>
+                                       <input type="button" value="Reservar" onclick="location.href='planes_visitas.php?pl=5&t=2'" class="btn  btn_planes"><br>
                                    </div>
                                </footer>
                            </div>

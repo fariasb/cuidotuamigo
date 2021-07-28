@@ -5,15 +5,18 @@
     $array = array("../../../estatico/css/reserva.css");
 
     $pathPrivadoCliente = VPRIVADO_CLIENTE_PATH;
+    
 
     if (isset($_SESSION['id_cliente'])) {
         $idCliente = $_SESSION['id_cliente'];
 
-        $consulta = "select a.id_atencion, m.nombre as mascota, p.nombre, p.apellido_paterno, h.fecha , h.hora_dia , a.estado_atencion from cuidotuamigodb.atencion a 
+        $consulta = "select a.id_atencion, m.nombre as mascota, p.nombre, p.apellido_paterno, h.fecha , h.hora_dia , a.estado_atencion, pl.nombre_plan 
+        from cuidotuamigodb.atencion a 
         inner join cuidotuamigodb.mascota m on m.id_mascota = a.id_mascota 
         inner join cuidotuamigodb.horario h on h.id_horario = a.id_horario 
         inner join cuidotuamigodb.trabajador t on t.id_trabajador  = a.id_trabajador 
         inner join cuidotuamigodb.persona p on p.id_persona = t.id_persona 
+        inner join cuidotuamigodb.plan pl on pl.id_plan = a.id_plan
         where m.id_cliente = $idCliente
         order by h.fecha, h.hora_dia desc"; 
 
@@ -28,6 +31,7 @@
         $resultadoDelAtencion = mysqli_query($conex, $queryDelAtencion);
 
         if ($resultadoDelAtencion){
+            $_SESSION['active']=3;
             header("Location:$pathPrivadoCliente/mi_cuenta.php");
         }else{
             echo mysqli_error($conex);
@@ -42,11 +46,12 @@
                 <table class="table table-striped table_mis_reservas" style="background-color: white" id="reservas">
                     <thead>
                         <tr>
-                        <th scope="col" class="table_mis_reservas_tr_10"></th>
+                        <th scope="col" class="table_mis_reservas_tr_5"></th>
                         <th scope="col" class="table_mis_reservas_tr_15">Mascota</th>
                         <th scope="col" class="table_mis_reservas_tr_20">Paseador</th>
-                        <th scope="col" class="table_mis_reservas_tr_15">Fecha</th>
+                        <th scope="col" class="table_mis_reservas_tr_20">Fecha</th>
                         <th scope="col" class="table_mis_reservas_tr_15">Hora</th>
+                        <th scope="col" class="table_mis_reservas_tr_15">Tipo</th>
                         <th scope="col" class="table_mis_reservas_tr_15">Estado</th>
                         <th scope="col" class="table_mis_reservas_tr_10">Acción</th>
                         </tr>
@@ -56,7 +61,7 @@
                             if(isset($resultado)){
                                 while ($row = mysqli_fetch_array($resultado)) { ?>
                         <tr>
-                            <td class="table_mis_reservas_tr_10">
+                            <td class="table_mis_reservas_tr_5">
                                 <?php 
                                     if(isset($row['estado_atencion']) && strcasecmp($row['estado_atencion'],"pendiente") == 0){
                                 ?>  
@@ -71,8 +76,9 @@
                             </td>
                             <td class="table_mis_reservas_tr_15"><?php echo $row['mascota']; ?></td>
                             <td class="table_mis_reservas_tr_20"><?php echo $row['nombre']." ".$row['apellido_paterno']; ?></td>
-                            <td class="table_mis_reservas_tr_15"><?php echo $row['fecha']; ?></td>
+                            <td class="table_mis_reservas_tr_20"><?php echo $row['fecha']; ?></td>
                             <td class="table_mis_reservas_tr_15"><?php echo $row['hora_dia']; ?></td>
+                            <td class="table_mis_reservas_tr_15"><?php echo $row['nombre_plan']; ?></td>
                             <td class="table_mis_reservas_tr_15"><?php echo $row['estado_atencion']; ?></td>
 
                             <td class="table_mis_reservas_tr_10">
