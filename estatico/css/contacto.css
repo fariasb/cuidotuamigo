@@ -32,14 +32,13 @@
 
 .formulario_contacto{
     padding: 0px;
-    margin:0 auto;
     width: 380px;
     height: 60px;
 
 }
 .formulario_contacto  form{
     margin: 0 auto; /* centra el formulario*/
-    width: 360px;
+    width: 436px;
     height: 500px;
     text-align: left;
 }

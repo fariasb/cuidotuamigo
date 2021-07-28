@@ -125,21 +125,63 @@ if (isset($_POST['add_trab'])) {
                 <div class="formulario_contacto">
                     
                     <form  method="POST">
-                        <label for="nombre">Nombre:</label>
-                        <input type="text" id="nombre" name="nombre" ><br><br>
-                        <label for="apellido_pat">Apellido Paterno:</label>
-                        <input type="text" id="apellido_pat" name="apellido_pat" ><br><br>
-                        <label for="apellido_mat">Apellido Materno:</label>
-                        <input type="text" id="apellido_mat" name="apellido_mat" ><br><br>
-                        <label for="rut">Rut:</label>
-                        <input type="text" id="rut" name="rut" ><br><br>
-                        <label for="correo">Correo:</label>
-                        <input type="text" id="correo" name ="correo"><br><br>
-                        <label for="cargo">Cargo:</label>
-                        <select class="form-control select_cargo" id="cargo" name="cargo">
-                            <option value="1">Paseador</option>
-                            <option value="2">Administrador</option>
-                        </select><br><br>
+                        <div class="form-row">
+                            <div class="col-md-3">
+                                <label for="nombre">Nombre:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="nombre" name="nombre" class="form-control" required>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-row">
+                            <div class="col-md-3">
+                                <label for="apellido_pat">Apellido Paterno:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="apellido_pat" name="apellido_pat" class="form-control" required>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-row">
+                            <div class="col-md-3">
+                                <label for="apellido_mat">Apellido Materno:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="apellido_mat" name="apellido_mat" class="form-control" required>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-row">
+                            <div class="col-md-3">
+                                <label for="rut">Rut:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="rut" name="rut" class="form-control" required>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-row">
+                            <div class="col-md-3">
+                                <label for="correo">Correo:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="correo" name="correo" class="form-control" required>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-row">
+                            <div class="col-md-3">
+                                <label for="cargo">Cargo:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <select class="form-control select_cargo" id="cargo" name="cargo" style="width:100%" required>
+                                    <option value="1">Paseador</option>
+                                    <option value="2">Administrador</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
                         <input type="submit" value="Guardar"  name="add_trab" class="btn  btn_planes"><br><br>
                         
                     </form><br>

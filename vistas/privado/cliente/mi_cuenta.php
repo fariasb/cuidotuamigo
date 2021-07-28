@@ -37,9 +37,9 @@
             $div1 = "";
         }
     }
-    if (isset($_SESSION['active']) && $post == false) {
-        $tabActive = $_SESSION['active'];
-        //echo $tabActive;
+    if (isset($_GET['active'])) {
+        $tabActive = $_GET['active'];
+        $post = true;
         if($tabActive == 1){
             $tab1 = "active";
             $div1 = "show active";
@@ -64,8 +64,8 @@
             $tab1= "";
             $div1 = "";
         }
-        unset($_SESSION['active']);
     }
+    
 ?>
 <body>
 

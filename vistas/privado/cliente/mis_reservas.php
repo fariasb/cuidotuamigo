@@ -32,10 +32,11 @@
 
         if ($resultadoDelAtencion){
             $_SESSION['active']=3;
-            header("Location:$pathPrivadoCliente/mi_cuenta.php");
+            header("Location:$pathPrivadoCliente/mi_cuenta.php?active=3");
         }else{
             echo mysqli_error($conex);
-        }    
+        }
+ 
     }
 ?>
 <div>

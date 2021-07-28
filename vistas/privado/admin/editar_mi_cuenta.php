@@ -157,23 +157,23 @@
                     <input type="hidden" id="id_persona" name="id_persona" value="<?= $reg['id_persona'] ?>">
                         <div class="row">
                             <div class="col-md-2"><label for="rut">Rut:</label></div>
-                            <div class="col-md-3"><input type="text" id="rut" name="rut" class="form-control" value="<?= $reg['rut'] ?>"  <?php echo $disabled; ?> ></div>
+                            <div class="col-md-3"><input type="text" id="rut" name="rut" class="form-control" required value="<?= $reg['rut'] ?>"  <?php echo $disabled; ?> ></div>
                             <div class="col-md-2"><label for="nombre">Nombre:</label></div>
                             <div class="col-md-3"><input type="text" id="nombre" name="nombre" class="form-control" value="<?= $reg['nombre'] ?>"  <?php echo $disabled; ?>></div>
                         </div>
                         <br/>
                         <div class="row">
                             <div class="col-md-2"><label for="apellido_pat" >Apellido Paterno:</label></div>
-                            <div class="col-md-3"><input type="text" id="apellido_pat" name="apellido_pat"  class="form-control" value="<?= $reg['apellido_paterno'] ?>"  <?php echo $disabled; ?>></div>
+                            <div class="col-md-3"><input type="text" id="apellido_pat" name="apellido_pat"  class="form-control" required value="<?= $reg['apellido_paterno'] ?>"  <?php echo $disabled; ?>></div>
                             <div class="col-md-2"><label for="apellido_mat">Apellido Materno:</label></div>
-                            <div class="col-md-3"><input type="text" id="apellido_mat" name="apellido_mat" class="form-control" value="<?= $reg['apellido_materno'] ?>"  <?php echo $disabled; ?>></div>
+                            <div class="col-md-3"><input type="text" id="apellido_mat" name="apellido_mat" class="form-control" required value="<?= $reg['apellido_materno'] ?>"  <?php echo $disabled; ?>></div>
                         </div>
                         <br/>
                         <div class="row">
                             <div class="col-md-2"><label for="direccion">Dirección:</label></div>
-                            <div class="col-md-3"><input type="text" id="direccion" name ="direccion" placeholder="Calle # Número" class="form-control" value="<?= $reg['direccion'] ?>"  <?php echo $disabled; ?>></div>
+                            <div class="col-md-3"><input type="text" id="direccion" name ="direccion" placeholder="Calle # Número" required class="form-control" value="<?= $reg['direccion'] ?>"  <?php echo $disabled; ?>></div>
                             <div class="col-md-2"><label for="comuna">Comuna:</label></div>
-                            <div class="col-md-3"><select name="comuna" class="form-control"  <?php echo $disabled; ?>>
+                            <div class="col-md-3"><select name="comuna" class="form-control" required  <?php echo $disabled; ?>>
                                 <?php 
                                 while ($row = mysqli_fetch_array($result))
                                 {
@@ -189,9 +189,9 @@
                         <br/>
                         <div class="row">
                             <div class="col-md-2"><label for="correo">Correo electrónico:</label></div>
-                            <div class="col-md-3"><input type="text" id="correo" name ="correo" placeholder="correo@gmail.com" class="form-control" value="<?= $reg['correo'] ?>" readonly ></div>
+                            <div class="col-md-3"><input type="text" id="correo" name ="correo" placeholder="correo@gmail.com" class="form-control" required value="<?= $reg['correo'] ?>" readonly ></div>
                             <div class="col-md-2"><label for="telefono">Télefono de contacto:</label></div>
-                            <div class="col-md-3"><input type="text" id="telefono"  name ="telefono" placeholder="9 12345678" class="form-control" value="<?= $reg['telefono'] ?>"  <?php echo $disabled; ?>></div>
+                            <div class="col-md-3"><input type="text" id="telefono"  name ="telefono" placeholder="9 12345678" class="form-control" required value="<?= $reg['telefono'] ?>"  <?php echo $disabled; ?>></div>
    
                         </div>
                         <br/>
@@ -217,7 +217,7 @@
                
                         <div class="row">
                             <div class="col-md-1"></div>
-                            <div class="col-md-6"><input type="submit" name="cancela" value="Volver" class="btn  btn_planes"><br><br></div>
+                            <div class="col-md-6"><input type="button" name="cancela" value="Volver" onclick="location.href='mi_cuenta.php'" class="btn  btn_planes"><br><br></div>
                             <div class="col-md-1"><input type="submit" name="guarda" value="Guardar" class="btn  btn_planes"><br><br></div>
                           
                           

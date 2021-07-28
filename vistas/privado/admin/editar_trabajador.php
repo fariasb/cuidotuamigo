@@ -110,31 +110,74 @@
                 <div class="formulario_contacto">
                     
                     <form  method="POST">
-                        <label for="nombre">Nombre:</label>
-                        <input type="text" id="nombre" name="nombre" value="<?= $reg['nombre'] ?>"><br><br>
-                        <label for="apellido_pat">Apellido Paterno:</label>
-                        <input type="text" id="apellido_pat" name="apellido_pat" value="<?= $reg['apellido_paterno'] ?>"><br><br>
-                        <label for="apellido_mat">Apellido Materno:</label>
-                        <input type="text" id="apellido_mat" name="apellido_mat" value="<?= $reg['apellido_materno'] ?>"><br><br>
-                        <label for="rut">Rut:</label>
-                        <input type="text" id="rut" name="rut" value="<?= $reg['rut'] ?>"><br><br>
-                        <label for="correo">Correo:</label>
-                        <input type="text" id="correo" name ="correo" value="<?= $reg['correo'] ?>"><br><br>
-                        <label for="cargo">Cargo:</label>
-                        <select class="form-control select_cargo" id="cargo" name="cargo">
-                            <?php
-                                if("1" == $regTrab['id_tipo_trabajador'] ){
-                                    echo "<option  value='1' selected>Paseador</option>";
-                                }else{
-                                    echo "<option value='1'>Paseador</option>";
-                                }
-                                if("2" == $regTrab['id_tipo_trabajador'] ){
-                                    echo "<option value='2' selected>Administrador</option>";
-                                }else{
-                                    echo "<option value='2'>Administrador</option>";
-                                }
-                            ?>  
-                        </select><br><br>
+                    <div class="form-row">
+                            <div class="col-md-3">
+                                <label for="nombre">Nombre:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="nombre" name="nombre" class="form-control" required value="<?= $reg['nombre'] ?>">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-row">
+                            <div class="col-md-3">
+                                <label for="apellido_pat">Apellido Paterno:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="apellido_pat" name="apellido_pat" class="form-control" required value="<?= $reg['apellido_paterno'] ?>">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-row">
+                            <div class="col-md-3">
+                                <label for="apellido_mat">Apellido Materno:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="apellido_mat" name="apellido_mat" class="form-control" required value="<?= $reg['apellido_materno'] ?>">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-row">
+                            <div class="col-md-3">
+                                <label for="rut">Rut:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="rut" name="rut" class="form-control" required value="<?= $reg['rut'] ?>">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-row">
+                            <div class="col-md-3">
+                                <label for="correo">Correo:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="correo" name="correo" class="form-control" required value="<?= $reg['correo'] ?>">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-row">
+                            <div class="col-md-3">
+                                <label for="cargo">Cargo:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <select class="form-control select_cargo" id="cargo" name="cargo" style="width:100%" required>
+                                    <?php
+                                        if("1" == $regTrab['id_tipo_trabajador'] ){
+                                            echo "<option  value='1' selected>Paseador</option>";
+                                        }else{
+                                            echo "<option value='1'>Paseador</option>";
+                                        }
+                                        if("2" == $regTrab['id_tipo_trabajador'] ){
+                                            echo "<option value='2' selected>Administrador</option>";
+                                        }else{
+                                            echo "<option value='2'>Administrador</option>";
+                                        }
+                                    ?>  
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        
                         <input type="submit" value="Guardar"  name="submit" class="btn  btn_planes"><br><br>
                         
                     </form><br>

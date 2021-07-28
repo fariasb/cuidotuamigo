@@ -111,23 +111,23 @@
                     <form action="" method="POST">
                         <div class="row">
                             <div class="col-md-2"><label for="rut">Rut:</label></div>
-                            <div class="col-md-3"><input type="text" id="rut" name="rut" class="form-control"></div>
+                            <div class="col-md-3"><input type="text" id="rut" name="rut" class="form-control" required></div>
                             <div class="col-md-2"><label for="nombre">Nombre:</label></div>
-                            <div class="col-md-3"><input type="text" id="nombre" name="nombre" class="form-control"></div>
+                            <div class="col-md-3"><input type="text" id="nombre" name="nombre" class="form-control" required></div>
                         </div>
                         <br/>
                         <div class="row">
                             <div class="col-md-2"><label for="apellido_pat" >Apellido Paterno:</label></div>
-                            <div class="col-md-3"><input type="text" id="apellido_pat" name="apellido_pat"  class="form-control"></div>
+                            <div class="col-md-3"><input type="text" id="apellido_pat" name="apellido_pat"  class="form-control" required></div>
                             <div class="col-md-2"><label for="apellido_mat">Apellido Materno:</label></div>
-                            <div class="col-md-3"><input type="text" id="apellido_mat" name="apellido_mat" class="form-control"></div>
+                            <div class="col-md-3"><input type="text" id="apellido_mat" name="apellido_mat" class="form-control" required></div>
                         </div>
                         <br/>
                         <div class="row">
                             <div class="col-md-2"><label for="direccion">Dirección:</label></div>
-                            <div class="col-md-3"><input type="text" id="direccion" name ="direccion" placeholder="Calle # Número" class="form-control"></div>
+                            <div class="col-md-3"><input type="text" id="direccion" name ="direccion" placeholder="Calle # Número" class="form-control" required></div>
                             <div class="col-md-2"><label for="comuna">Comuna:</label></div>
-                            <div class="col-md-3"><select name="comuna" class="form-control">
+                            <div class="col-md-3"><select name="comuna" class="form-control" required>
                                 <?php 
                                 while ($row = mysqli_fetch_array($result))
                                 {
@@ -139,9 +139,9 @@
                         <br/>
                         <div class="row">
                             <div class="col-md-2"><label for="correo">Correo electrónico:</label></div>
-                            <div class="col-md-3"><input type="text" id="correo" name ="correo" placeholder="correo@gmail.com" class="form-control"></div>
+                            <div class="col-md-3"><input type="text" id="correo" name ="correo" placeholder="correo@gmail.com" class="form-control" required></div>
                             <div class="col-md-2"><label for="telefono">Télefono de contacto:</label></div>
-                            <div class="col-md-3"><input type="text" id="telefono"  name ="telefono" placeholder="9 12345678" class="form-control"></div>
+                            <div class="col-md-3"><input type="text" id="telefono"  name ="telefono" placeholder="9 12345678" class="form-control" required></div>
    
                         </div>
                         <br/>
